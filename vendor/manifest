@@ -1,0 +1,110 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/Jeffail/gabs",
+			"repository": "https://github.com/Jeffail/gabs",
+			"revision": "44cbc27138518b15305cb3eef220d04f2d641b9b",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/docopt/docopt-go",
+			"repository": "https://github.com/docopt/docopt-go",
+			"revision": "ee0de3bc6815ee19d4a46c7eb90f829db0e014b1",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/docopt/docopt.go",
+			"repository": "https://github.com/docopt/docopt.go",
+			"revision": "ee0de3bc6815ee19d4a46c7eb90f829db0e014b1",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/eclipse/paho.mqtt.golang",
+			"repository": "https://github.com/eclipse/paho.mqtt.golang",
+			"revision": "bab87cde322cf9aec420645d1e9801d0f216f791",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/shurcooL/go-goon",
+			"repository": "https://github.com/shurcooL/go-goon",
+			"revision": "37c2f522c041b74919a9e5e3a6c5c47eb34730a5",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/shurcooL/go/parserutil",
+			"repository": "https://github.com/shurcooL/go",
+			"revision": "004faa6b0118cf52635363b72b51cdcc297800a2",
+			"branch": "master",
+			"path": "/parserutil"
+		},
+		{
+			"importpath": "github.com/shurcooL/go/printerutil",
+			"repository": "https://github.com/shurcooL/go",
+			"revision": "004faa6b0118cf52635363b72b51cdcc297800a2",
+			"branch": "master",
+			"path": "/printerutil"
+		},
+		{
+			"importpath": "github.com/shurcooL/go/reflectfind",
+			"repository": "https://github.com/shurcooL/go",
+			"revision": "004faa6b0118cf52635363b72b51cdcc297800a2",
+			"branch": "master",
+			"path": "/reflectfind"
+		},
+		{
+			"importpath": "github.com/shurcooL/go/reflectsource",
+			"repository": "https://github.com/shurcooL/go",
+			"revision": "004faa6b0118cf52635363b72b51cdcc297800a2",
+			"branch": "master",
+			"path": "/reflectsource"
+		},
+		{
+			"importpath": "github.com/sirupsen/logrus",
+			"repository": "https://github.com/sirupsen/logrus",
+			"revision": "d682213848ed68c0a260ca37d6dd5ace8423f5ba",
+			"branch": "master"
+		},
+		{
+			"importpath": "golang.org/x/crypto/ssh/terminal",
+			"repository": "https://go.googlesource.com/crypto",
+			"revision": "d94f6bc902c2970500950e88ab1a54a0c26bec48",
+			"branch": "master",
+			"path": "/ssh/terminal"
+		},
+		{
+			"importpath": "golang.org/x/net/proxy",
+			"repository": "https://go.googlesource.com/net",
+			"revision": "5ccada7d0a7ba9aeb5d3aca8d3501b4c2a509fec",
+			"branch": "master",
+			"path": "/proxy"
+		},
+		{
+			"importpath": "golang.org/x/net/publicsuffix",
+			"repository": "https://go.googlesource.com/net",
+			"revision": "5ccada7d0a7ba9aeb5d3aca8d3501b4c2a509fec",
+			"branch": "master",
+			"path": "/publicsuffix"
+		},
+		{
+			"importpath": "golang.org/x/net/websocket",
+			"repository": "https://go.googlesource.com/net",
+			"revision": "5ccada7d0a7ba9aeb5d3aca8d3501b4c2a509fec",
+			"branch": "master",
+			"path": "/websocket"
+		},
+		{
+			"importpath": "golang.org/x/sys/windows",
+			"repository": "https://go.googlesource.com/sys",
+			"revision": "af50095a40f9041b3b38960738837185c26e9419",
+			"branch": "master",
+			"path": "/windows"
+		},
+		{
+			"importpath": "gopkg.in/resty.v0",
+			"repository": "https://gopkg.in/resty.v0",
+			"revision": "cf81ed0a604d373be63b4c036c6b05c06520615f",
+			"branch": "master"
+		}
+	]
+}
