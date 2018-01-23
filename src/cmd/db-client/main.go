@@ -37,7 +37,7 @@ func main() {
 
 	client, err := client.NewClient(deviceConfig)
 
-	client.Debug = true
+	//client.Debug = true
 
 	if nil != err {
 		panic(err)

@@ -10,7 +10,6 @@ import (
 	"os"
 	"crypto/x509"
 	"strings"
-	"github.com/shurcooL/go-goon"
 	builtinlog "log"
 	"github.com/Jeffail/gabs"
 )
@@ -58,7 +57,7 @@ func (c *Client) MessagingLoop() {
 }
 
 func (c *Client) onConnect(conn mqtt.Client) {
-	topicsToSubscribe := map[string]byte{c.shadowRoot("shadow", "#"): 1}
+	topicsToSubscribe := map[string]byte{c.shadowRoot("shadow", "update", "accepted"): 1}
 
 	for topicName, _ := range topicsToSubscribe {
 		if token := c.mqttClient.Subscribe(topicName, 0, c.onMessage); token.Wait() || nil != token.Error() {
@@ -195,7 +194,18 @@ func (c *Client) shadowRoot(elements ...string) string {
 }
 
 func (c *Client) onMessage(client mqtt.Client, message mqtt.Message) {
-	log.Infof("Topic Message Received: %s", goon.Sdump(message))
+	//log.Infof("Topic Message Received: %s", goon.Sdump(message))
+
+	topic := message.Topic()
+	payload, err := gabs.ParseJSON(message.Payload())
+
+	if nil != err {
+		return
+	}
+
+	payload.Set(topic, "_topic")
+
+	fmt.Println(payload.StringIndent("", "  "))
 }
 
 func (c *Client) ReportState(o *gabs.Container) error {

@@ -66,6 +66,12 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/tarm/serial",
+			"repository": "https://github.com/tarm/serial",
+			"revision": "eaafced92e9619f03c72527efeab21e326f3bc36",
+			"branch": "master"
+		},
+		{
 			"importpath": "golang.org/x/crypto/ssh/terminal",
 			"repository": "https://go.googlesource.com/crypto",
 			"revision": "d94f6bc902c2970500950e88ab1a54a0c26bec48",
