@@ -8,6 +8,24 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/bmizerany/pat",
+			"repository": "https://github.com/bmizerany/pat",
+			"revision": "6226ea591a40176dd3ff9cd8eff81ed6ca721a00",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/codegangsta/cli",
+			"repository": "https://github.com/codegangsta/cli",
+			"revision": "75104e932ac2ddb944a6ea19d9f9f26316ff1145",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/creack/goselect",
+			"repository": "https://github.com/creack/goselect",
+			"revision": "1bd5ca702c6154bccc56ecd598932ee8b295cab2",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/docopt/docopt-go",
 			"repository": "https://github.com/docopt/docopt-go",
 			"revision": "ee0de3bc6815ee19d4a46c7eb90f829db0e014b1",
@@ -20,9 +38,97 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/donovanhide/eventsource",
+			"repository": "https://github.com/donovanhide/eventsource",
+			"revision": "3ed64d21fb0b6bd8b49bcfec08f3004daee8723d",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/eclipse/paho.mqtt.golang",
 			"repository": "https://github.com/eclipse/paho.mqtt.golang",
 			"revision": "bab87cde322cf9aec420645d1e9801d0f216f791",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/go-ble/ble",
+			"repository": "https://github.com/go-ble/ble",
+			"revision": "fe39e478ef1cfc1395b96134e61f825e46e814ba",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/hashicorp/errwrap",
+			"repository": "https://github.com/hashicorp/errwrap",
+			"revision": "7554cd9344cec97297fa6649b055a8c98c2a1e55",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/hashicorp/go-multierror",
+			"repository": "https://github.com/hashicorp/go-multierror",
+			"revision": "b7773ae218740a7be65057fc60b366a49b538a44",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/hybridgroup/go-ardrone/client",
+			"repository": "https://github.com/hybridgroup/go-ardrone",
+			"revision": "b9750d8d7b78f9638e5fdd899835e99d46b5a56c",
+			"branch": "master",
+			"path": "/client"
+		},
+		{
+			"importpath": "github.com/mattn/go-colorable",
+			"repository": "https://github.com/mattn/go-colorable",
+			"revision": "6cc8b475d4682021d75d2cbe2bc481bec4ce98e5",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/mattn/go-isatty",
+			"repository": "https://github.com/mattn/go-isatty",
+			"revision": "6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/mgutz/ansi",
+			"repository": "https://github.com/mgutz/ansi",
+			"revision": "9520e82c474b0a04dd04f8a40959027271bab992",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/mgutz/logxi/v1",
+			"repository": "https://github.com/mgutz/logxi",
+			"revision": "aebf8a7d67ab4625e0fd4a665766fef9a709161b",
+			"branch": "master",
+			"path": "/v1"
+		},
+		{
+			"importpath": "github.com/nats-io/go-nats/encoders/builtin",
+			"repository": "https://github.com/nats-io/go-nats",
+			"revision": "78ec4b93936d7a00e59b7f3939d8116955916d1b",
+			"branch": "master",
+			"path": "/encoders/builtin"
+		},
+		{
+			"importpath": "github.com/nats-io/go-nats/util",
+			"repository": "https://github.com/nats-io/go-nats",
+			"revision": "78ec4b93936d7a00e59b7f3939d8116955916d1b",
+			"branch": "master",
+			"path": "/util"
+		},
+		{
+			"importpath": "github.com/nats-io/nats",
+			"repository": "https://github.com/nats-io/nats",
+			"revision": "78ec4b93936d7a00e59b7f3939d8116955916d1b",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/nats-io/nuid",
+			"repository": "https://github.com/nats-io/nuid",
+			"revision": "33c603157d6fd1b0ac2599bcc4a286b36479a06d",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/pkg/errors",
+			"repository": "https://github.com/pkg/errors",
+			"revision": "e881fd58d78e04cf6d0de1217f8707c8cc2249bc",
 			"branch": "master"
 		},
 		{
@@ -60,6 +166,18 @@
 			"path": "/reflectsource"
 		},
 		{
+			"importpath": "github.com/sigurn/crc8",
+			"repository": "https://github.com/sigurn/crc8",
+			"revision": "e55481d6f45c5a8f040343bace9013571dae103e",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/sigurn/utils",
+			"repository": "https://github.com/sigurn/utils",
+			"revision": "f19e41f79f8f006116f682c1af454591bc278ad4",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/sirupsen/logrus",
 			"repository": "https://github.com/sirupsen/logrus",
 			"revision": "d682213848ed68c0a260ca37d6dd5ace8423f5ba",
@@ -72,11 +190,43 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/veandco/go-sdl2/sdl",
+			"repository": "https://github.com/veandco/go-sdl2",
+			"revision": "2ef91e94cbb2c7b9114f9e4638fb8107ac04f344",
+			"branch": "master",
+			"path": "/sdl"
+		},
+		{
+			"importpath": "go.bug.st/serial.v1",
+			"repository": "https://go.bug.st/git/serial.v1.git",
+			"revision": "eae1344f9f90101f887b08d13391c34399f97873",
+			"branch": "v1"
+		},
+		{
+			"importpath": "gobot.io/x/gobot",
+			"repository": "https://github.com/hybridgroup/gobot",
+			"revision": "6fb9c3991b5d9225e71c0e46b4239da33395251a",
+			"branch": "master"
+		},
+		{
+			"importpath": "gocv.io/x/gocv",
+			"repository": "https://github.com/hybridgroup/gocv",
+			"revision": "be25d727bf4f5c0b25e5846da1e3c8f7a3c010df",
+			"branch": "master"
+		},
+		{
 			"importpath": "golang.org/x/crypto/ssh/terminal",
 			"repository": "https://go.googlesource.com/crypto",
 			"revision": "d94f6bc902c2970500950e88ab1a54a0c26bec48",
 			"branch": "master",
 			"path": "/ssh/terminal"
+		},
+		{
+			"importpath": "golang.org/x/exp/io/spi",
+			"repository": "https://go.googlesource.com/exp",
+			"revision": "072991165226c11c888c881218850e8318c2b32e",
+			"branch": "master",
+			"path": "/io/spi"
 		},
 		{
 			"importpath": "golang.org/x/net/proxy",
@@ -98,6 +248,13 @@
 			"revision": "5ccada7d0a7ba9aeb5d3aca8d3501b4c2a509fec",
 			"branch": "master",
 			"path": "/websocket"
+		},
+		{
+			"importpath": "golang.org/x/sys/unix",
+			"repository": "https://go.googlesource.com/sys",
+			"revision": "af50095a40f9041b3b38960738837185c26e9419",
+			"branch": "master",
+			"path": "/unix"
 		},
 		{
 			"importpath": "golang.org/x/sys/windows",

@@ -12,6 +12,8 @@ import (
 	"strings"
 	builtinlog "log"
 	"github.com/Jeffail/gabs"
+	"sync"
+	"errors"
 )
 
 type Client struct {
@@ -208,7 +210,27 @@ func (c *Client) onMessage(client mqtt.Client, message mqtt.Message) {
 	fmt.Println(payload.StringIndent("", "  "))
 }
 
+var publisherMu sync.Mutex
+
+var ENotConnected = errors.New("Not connected")
+
 func (c *Client) ReportState(o *gabs.Container) error {
+	defer func() {
+		x := recover()
+
+		if err, errorP := x.(error); errorP {
+			log.Errorf("Oops: %v", err)
+
+			c.resultCh <- err
+		} else {
+			c.resultCh <- nil
+		}
+	}()
+
+	publisherMu.Lock()
+
+	defer publisherMu.Unlock()
+
 	newReport, _ := gabs.ParseJSON([]byte(fmt.Sprintf(`{"state":{"reported":%s}}`, o.String())))
 
 	topicToPublish := c.shadowRoot("shadow", "update")
@@ -223,3 +245,48 @@ func (c *Client) ReportState(o *gabs.Container) error {
 
 	return nil
 }
+
+/*
+var publisherMu sync.Mutex
+
+var ENotConnected = errors.New("Not connected")
+
+func (c *Collector) publishRecord(record aircraft.AircraftRecord) error {
+	defer func() {
+		x := recover()
+
+		if err, errorP := x.(error); errorP {
+			log.Errorf("Oops: %v", err)
+
+			c.resultCh <- err
+		} else {
+			c.resultCh <- nil
+		}
+	}()
+
+	publisherMu.Lock()
+
+	defer publisherMu.Unlock()
+
+	if !c.mqttClient.IsConnected() {
+		panic(ENotConnected)
+	}
+
+	buffer, err := c.encodeToRecord(record)
+
+	if nil != err {
+		panic(err)
+	}
+
+	topicToPublish := c.deviceRoot()
+
+	if token := c.mqttClient.Publish(topicToPublish, 1, false, buffer.Bytes()); token.Wait() || nil != token.Error() {
+		if nil != token.Error() {
+			panic(token.Error())
+		}
+	}
+
+	return nil
+}
+
+ */
