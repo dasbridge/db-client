@@ -220,10 +220,6 @@ func (c *Client) ReportState(o *gabs.Container) error {
 
 		if err, errorP := x.(error); errorP {
 			log.Errorf("Oops: %v", err)
-
-			c.resultCh <- err
-		} else {
-			c.resultCh <- nil
 		}
 	}()
 

@@ -6,11 +6,11 @@ import (
 	"github.com/docopt/docopt.go"
 	"types"
 	"client"
-	"gobot.io/x/gobot/drivers/gpio"
-	"gobot.io/x/gobot"
 	"time"
 	"gobot.io/x/gobot/drivers/i2c"
 	"github.com/Jeffail/gabs"
+	"os"
+	"os/signal"
 )
 
 const DOC = `db-bmp280-thermometer-service.
@@ -45,37 +45,15 @@ func main() {
 
 	firmataAdaptor := firmata.NewAdaptor(serialPort)
 
-	led := gpio.NewLedDriver(firmataAdaptor, "13")
+	err = firmataAdaptor.Connect()
+
+	if nil != err {
+		panic(err)
+	}
 
 	bmp280 := i2c.NewBMP280Driver(firmataAdaptor, i2c.WithBus(0), i2c.WithAddress(0x76))
 
-	var temp float32
-
-	work := func() {
-		gobot.Every(5 * time.Second, func() {
-			led.Toggle()
-
-			var err error
-
-			temp, err = bmp280.Temperature()
-
-			if nil != err {
-				log.Warnf("WARN: %s", err)
-			}
-		})
-	}
-
-	robot := gobot.NewRobot("bot",
-		[]gobot.Connection{firmataAdaptor},
-		[]gobot.Device{led,bmp280},
-		work,
-	)
-
-	go func() {
-		robot.Start()
-	}()
-
-	defer robot.Stop()
+	bmp280.Start()
 
 	//client.Debug = true
 
@@ -84,13 +62,34 @@ func main() {
 	}
 
 	go func() {
-		defer client.Close()
-
 		client.MessagingLoop()
 	}()
 
+	quit := make(chan struct{})
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+	go func() {
+		<-c
+		client.Close()
+
+		log.Infof("Disconneting mqtt")
+
+		quit <- struct{}{}
+	}()
+	//<-quit
+
+	var oldTemp float32 = float32(0.0)
+
 	for {
-		if 0 != temp {
+		temp, err := bmp280.Temperature()
+
+		if nil != err {
+			log.Warnf("Oops: %s", err)
+
+			continue
+		}
+
+		if 0 != temp && oldTemp != temp {
 			c := gabs.New()
 
 			c.Set(temp,"Alexa.TemperatureSensor", "3", "temp")
@@ -98,6 +97,9 @@ func main() {
 			client.ReportState(c)
 		}
 
-		time.Sleep(5 * time.Second)
+
+		oldTemp = temp
+
+		time.Sleep(1 * time.Minute)
 	}
 }
