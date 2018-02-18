@@ -5,10 +5,10 @@ import (
 	log "github.com/sirupsen/logrus"
 	"fmt"
 	"os"
-	"strings"
 	"gopkg.in/resty.v0"
 	"types"
 	"github.com/Jeffail/gabs"
+	"util"
 )
 
 const DOC = `db-device-register.
@@ -19,8 +19,6 @@ Usage:
   db-device-register -v | --version
 
 Options:
-  -k --api-key APIKEY     API Key to Use
-  -e --endpoint ENDPOINT  API Endpoint to use [default: https://api-devices.dobkaera.cc]
   -h --help               This message
   -v --version            Shows version
 `
@@ -30,30 +28,12 @@ func main() {
 
 	//fmt.Printf("opts: %+v\n", opts)
 
-	apiKey := os.Getenv("DB_API_KEY")
-
-	if newApiKey, ok := opts["--api-key"].(string); ok {
-		apiKey = newApiKey
-	}
-
-	if "" == apiKey {
-		panic(fmt.Errorf("API Key not set!"))
-	}
-
-	endpoint := opts["--endpoint"].(string)
-
-	if ! strings.HasSuffix(endpoint, "/") {
-		endpoint += "/"
-	}
-
-	if "" == endpoint {
-		panic(fmt.Errorf("Endpoint not set!"))
-	}
+	apiKey, endpoint := util.FetchCoordinates()
 
 	thingId := opts["<thingId>"].(string)
 	thingType := opts["<thingType>"].(string)
 
-	urlToUse := endpoint + "provision"
+	urlToUse := endpoint + "device"
 
 	log.Infof("Using endpoint: %s (in fact: %s)", endpoint, urlToUse)
 

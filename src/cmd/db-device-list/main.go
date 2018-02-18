@@ -8,12 +8,12 @@ import (
 	"util"
 )
 
-const DOC = `db-device-check.
+const DOC = `db-device-list.
 
 Usage:
-  db-device-check
-  db-device-check -h | --help
-  db-device-check -v | --version
+  db-device-list [options]
+  db-device-list -h | --help
+  db-device-list -v | --version
 
 Options:
   -h --help               This message
@@ -23,20 +23,24 @@ Options:
 func main() {
 	docopt.Parse(DOC, nil, true, "0.0.1", true, true)
 
-	//fmt.Printf("opts: %+v\n", opts)
-
 	apiKey, endpoint := util.FetchCoordinates()
 
-	log.Info("Using endpoint:", endpoint)
+	urlToUse := endpoint + "device"
+
+	log.Infof("Using endpoint: %s (in fact: %s)", endpoint, urlToUse)
 
 	resp, err := resty.R().
 		SetHeader("x-api-key", apiKey).
-		Get(endpoint)
+		Get(urlToUse)
 
 	if nil != err {
 		log.Fatalf("Oops:", err)
 		panic(err)
 	}
 
-	fmt.Printf("Response: %s\n", string(resp.Body()))
+	fmt.Printf("Response: %s (%d)\n", string(resp.Body()), resp.StatusCode())
+
+	if 200 == resp.StatusCode() {
+		fmt.Println(string(resp.Body()))
+	}
 }
