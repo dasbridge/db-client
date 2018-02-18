@@ -75,6 +75,12 @@
 			"path": "/client"
 		},
 		{
+			"importpath": "github.com/jmespath/go-jmespath",
+			"repository": "https://github.com/jmespath/go-jmespath",
+			"revision": "c2b33e8439af944379acbdd9c3a5fe0bc44bd8a5",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/lucasb-eyer/go-colorful",
 			"repository": "https://github.com/lucasb-eyer/go-colorful",
 			"revision": "231272389856c976b7500c4fffcc52ddf06ff4eb",

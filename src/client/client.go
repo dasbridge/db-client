@@ -14,6 +14,8 @@ import (
 	"github.com/Jeffail/gabs"
 	"sync"
 	"errors"
+	"encoding/json"
+	"github.com/shurcooL/go-goon"
 )
 
 type Client struct {
@@ -60,16 +62,16 @@ func (c *Client) MessagingLoop() {
 
 func (c *Client) onConnect(conn mqtt.Client) {
 	topicsToSubscribe := map[string]byte{
-		c.shadowRoot("shadow", "update", "accepted"): 1,
-		c.shadowRoot("shadow", "update"): 1,
+		c.shadowRoot("shadow", "update", "accepted"):  1,
+		c.shadowRoot("shadow", "update"):              1,
 		c.shadowRoot("shadow", "update", "documents"): 1,
-		c.shadowRoot("shadow", "update", "rejected"): 1,
-		c.shadowRoot("shadow", "get"): 1,
-		c.shadowRoot("shadow", "get", "accepted"): 1,
-		c.shadowRoot("shadow", "get", "rejected"): 1,
-		c.shadowRoot("shadow", "delete"): 1,
-		c.shadowRoot("shadow", "delete", "accepted"): 1,
-		c.shadowRoot("shadow", "delete", "rejected"): 1,
+		c.shadowRoot("shadow", "update", "rejected"):  1,
+		c.shadowRoot("shadow", "get"):                 1,
+		c.shadowRoot("shadow", "get", "accepted"):     1,
+		c.shadowRoot("shadow", "get", "rejected"):     1,
+		c.shadowRoot("shadow", "delete"):              1,
+		c.shadowRoot("shadow", "delete", "accepted"):  1,
+		c.shadowRoot("shadow", "delete", "rejected"):  1,
 	}
 
 	for topicName, _ := range topicsToSubscribe {
@@ -142,11 +144,7 @@ OUTER:
 
 		connectionOptions.OnConnect = c.onConnect
 
-		if nil == c.cfg.PublishHandler {
-			connectionOptions.SetDefaultPublishHandler(c.onMessage)
-		} else {
-			connectionOptions.SetDefaultPublishHandler(c.cfg.PublishHandler)
-		}
+		connectionOptions.SetDefaultPublishHandler(c.onMessage)
 
 		if c.Debug {
 			mqtt.DEBUG = builtinlog.New(os.Stderr, "DEBUG: ", builtinlog.Lshortfile)
@@ -211,18 +209,34 @@ func (c *Client) shadowRoot(elements ...string) string {
 }
 
 func (c *Client) onMessage(client mqtt.Client, message mqtt.Message) {
-	//log.Infof("Topic Message Received: %s", goon.Sdump(message))
+	payload := make(map[string]interface{})
 
-	topic := message.Topic()
-	payload, err := gabs.ParseJSON(message.Payload())
+	err := json.Unmarshal(message.Payload(), &payload)
 
 	if nil != err {
-		return
+		log.Warn("Oops: ", err)
 	}
 
-	payload.Set(topic, "_topic")
+	payload["topic"] = message.Topic()
 
-	fmt.Println(payload.StringIndent("", "  "))
+	handled := false
+
+	for _, v := range c.cfg.Callbacks {
+		if 0 != len(v.TopicSuffix) && strings.HasSuffix(message.Topic(), v.TopicSuffix) {
+			beenHandled, err := v.Handle(payload)
+
+			handled = handled || beenHandled
+
+			if nil != err {
+				log.Warnf("Oops (topicSuffix: %s): %s", v.TopicSuffix, err)
+			}
+		}
+	}
+
+	if !handled {
+		log.Warnf("Oops: Message not dealt (topic: %s): %s", message.Topic(), goon.Sdump(payload))
+	}
+
 }
 
 var publisherMu sync.Mutex
