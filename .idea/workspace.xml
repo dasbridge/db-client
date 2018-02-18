@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0ee895b-edd0-4e0d-8c54-2c0b7d205546" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/cmd/db-device-list/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/coordinates.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmd/db-device-check/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmd/db-device-check/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmd/db-device-meta/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmd/db-device-register/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmd/db-device-register/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/deviceconfig.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/deviceconfig.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,10 +16,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cmd/db-device-list/main.go">
+        <entry file="file://$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="963">
+              <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
             </state>
           </provider>
         </entry>
@@ -64,14 +59,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/cmd/db-bmp280-thermometer-service/main.go" />
-        <option value="$PROJECT_DIR$/src/client/client.go" />
-        <option value="$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go" />
         <option value="$PROJECT_DIR$/src/hsb/hsb.go" />
         <option value="$PROJECT_DIR$/src/util/coordinates.go" />
         <option value="$PROJECT_DIR$/src/cmd/db-device-check/main.go" />
         <option value="$PROJECT_DIR$/src/cmd/db-device-register/main.go" />
         <option value="$PROJECT_DIR$/src/cmd/db-device-list.go" />
         <option value="$PROJECT_DIR$/src/cmd/db-device-list/main.go" />
+        <option value="$PROJECT_DIR$/src/types/deviceconfig.go" />
+        <option value="$PROJECT_DIR$/src/client/client.go" />
+        <option value="$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go" />
       </list>
     </option>
   </component>
@@ -170,6 +166,12 @@
               <item name="db-client" type="b2602c69:ProjectViewProjectNode" />
               <item name="db-client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="types" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -196,7 +198,7 @@
               <item name="vendor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="Jeffail" type="462c0819:PsiDirectoryNode" />
+              <item name="eclipse" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="db-client" type="b2602c69:ProjectViewProjectNode" />
@@ -204,8 +206,8 @@
               <item name="vendor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="Jeffail" type="462c0819:PsiDirectoryNode" />
-              <item name="gabs" type="462c0819:PsiDirectoryNode" />
+              <item name="eclipse" type="462c0819:PsiDirectoryNode" />
+              <item name="paho.mqtt.golang" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="db-client" type="b2602c69:ProjectViewProjectNode" />
@@ -213,7 +215,7 @@
               <item name="vendor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="lucasb-eyer" type="462c0819:PsiDirectoryNode" />
+              <item name="tarm" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="db-client" type="b2602c69:ProjectViewProjectNode" />
@@ -221,8 +223,8 @@
               <item name="vendor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="lucasb-eyer" type="462c0819:PsiDirectoryNode" />
-              <item name="go-colorful" type="462c0819:PsiDirectoryNode" />
+              <item name="tarm" type="462c0819:PsiDirectoryNode" />
+              <item name="serial" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="db-client" type="b2602c69:ProjectViewProjectNode" />
@@ -346,7 +348,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.db-rgb">
     <configuration name="db-bmp280-thermometer-service" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="db-client" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -356,12 +358,30 @@
       <filePath value="$PROJECT_DIR$/src/cmd/db-bmp280-thermometer-service/main.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
+    <configuration name="db-rgb" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+      <module name="db-client" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <parameters value="/dev/ttyUSB0 AG6JLK4J4SVY6O2NZZIM5DLKVKOA_myRGBLamp-5cdd7fb7-1216-4ea0-90df-9b49790288f0.json" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go" />
+      <directory value="$PROJECT_DIR$/" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Build.db-bmp280-thermometer-service" />
+      <item itemvalue="Go Build.db-rgb" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.db-rgb" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="2560" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2547847" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25717703" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Cargo" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -371,7 +391,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39914164" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -400,11 +420,36 @@
           <line>80</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go</url>
+          <line>84</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go</url>
+          <line>102</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="10" />
+      <option name="time" value="16" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/cmd/db-device-list/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/cmd/db-bmp280-thermometer-service/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
@@ -590,13 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/client.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/src/gobot.io/x/gobot/drivers/gpio/gpio.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -614,13 +652,6 @@
     <entry file="file://$PROJECT_DIR$/vendor/src/github.com/lucasb-eyer/go-colorful/colors.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4968" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hsb/hsb.go">
@@ -641,16 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding>
-            <element signature="e#14#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cmd/db-bmp280-thermometer-service/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
@@ -661,18 +682,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cmd/db-device-meta/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-159" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cmd/db-device-list.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cmd/db-device-meta/main.go" />
+    <entry file="file://$PROJECT_DIR$/src/cmd/db-device-list.go" />
     <entry file="file://$PROJECT_DIR$/src/cmd/db-device-register/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
@@ -684,6 +695,55 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/src/github.com/tarm/serial/serial.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="89" column="92" lean-forward="true" selection-start-line="89" selection-start-column="6" selection-end-line="89" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/src/github.com/eclipse/paho.mqtt.golang/options.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="238" column="64" selection-start-line="238" selection-start-column="64" selection-end-line="238" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/types/deviceconfig.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cmd/db-bmp280-thermometer-service/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="633">
+          <caret line="96" column="33" lean-forward="true" selection-start-line="92" selection-end-line="96" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/src/github.com/eclipse/paho.mqtt.golang/message.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/client.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3087">
+          <caret line="69" column="44" lean-forward="true" selection-start-line="69" selection-start-column="44" selection-end-line="69" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cmd/db-bmp-rgb/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="963">
+          <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
         </state>
       </provider>
     </entry>

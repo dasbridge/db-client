@@ -59,7 +59,18 @@ func (c *Client) MessagingLoop() {
 }
 
 func (c *Client) onConnect(conn mqtt.Client) {
-	topicsToSubscribe := map[string]byte{c.shadowRoot("shadow", "update", "accepted"): 1}
+	topicsToSubscribe := map[string]byte{
+		c.shadowRoot("shadow", "update", "accepted"): 1,
+		c.shadowRoot("shadow", "update"): 1,
+		c.shadowRoot("shadow", "update", "documents"): 1,
+		c.shadowRoot("shadow", "update", "rejected"): 1,
+		c.shadowRoot("shadow", "get"): 1,
+		c.shadowRoot("shadow", "get", "accepted"): 1,
+		c.shadowRoot("shadow", "get", "rejected"): 1,
+		c.shadowRoot("shadow", "delete"): 1,
+		c.shadowRoot("shadow", "delete", "accepted"): 1,
+		c.shadowRoot("shadow", "delete", "rejected"): 1,
+	}
 
 	for topicName, _ := range topicsToSubscribe {
 		if token := c.mqttClient.Subscribe(topicName, 0, c.onMessage); token.Wait() || nil != token.Error() {
@@ -131,7 +142,11 @@ OUTER:
 
 		connectionOptions.OnConnect = c.onConnect
 
-		connectionOptions.SetDefaultPublishHandler(c.onMessage)
+		if nil == c.cfg.PublishHandler {
+			connectionOptions.SetDefaultPublishHandler(c.onMessage)
+		} else {
+			connectionOptions.SetDefaultPublishHandler(c.cfg.PublishHandler)
+		}
 
 		if c.Debug {
 			mqtt.DEBUG = builtinlog.New(os.Stderr, "DEBUG: ", builtinlog.Lshortfile)

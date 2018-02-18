@@ -3,6 +3,7 @@ package types
 import (
 	"os"
 	"encoding/json"
+	"github.com/eclipse/paho.mqtt.golang"
 )
 
 /*
@@ -22,18 +23,19 @@ import (
  */
 
 type DeviceConfig struct {
-	Endpoint         string            `json:"endpoint"`
-	CertificateId    string            `json:"certificateId"`
-	CertificateArn   string            `json:"certificateArn"`
-	CertificatePem   string            `json:"certificatePem"`
-	PublicKey        string            `json:"publicKey"`
-	PrivateKey       string            `json:"privateKey"`
-	ThingId          string            `json:"thingId"`
-	ThingArn         string            `json:"thingArn"`
-	ThingName        string            `json:"thingName"`
-	ThingType        string            `json:"thingType"`
-	ThingPolicy      string            `json:"thingPolicy"`
-	RootCertificates map[string]string `json:"rootCertificates"`
+	Endpoint         string              `json:"endpoint"`
+	CertificateId    string              `json:"certificateId"`
+	CertificateArn   string              `json:"certificateArn"`
+	CertificatePem   string              `json:"certificatePem"`
+	PublicKey        string              `json:"publicKey"`
+	PrivateKey       string              `json:"privateKey"`
+	ThingId          string              `json:"thingId"`
+	ThingArn         string              `json:"thingArn"`
+	ThingName        string              `json:"thingName"`
+	ThingType        string              `json:"thingType"`
+	ThingPolicy      string              `json:"thingPolicy"`
+	RootCertificates map[string]string   `json:"rootCertificates"`
+	PublishHandler   mqtt.MessageHandler `json:"-"`
 }
 
 func LoadDeviceConfig(path string) (*DeviceConfig, error) {
