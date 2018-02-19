@@ -84,6 +84,18 @@ void loop() {
       pixels.show();
 
       Serial.println("OK");
+    } else if ((line.startsWith("AT+BRIGHTNESS=") && (16 == line.length()))) {
+      char buf[3];
+
+      strncpy(buf, line.c_str() + 14, 2);
+      
+      uint8_t brightness = (uint8_t) strtol(buf, NULL, 16);
+
+      pixels.setBrightness(brightness);
+
+      pixels.show();
+
+      Serial.println("OK");
     } else {
       Serial.println("ERROR");
     }
