@@ -24,6 +24,7 @@ type Client struct {
 	hasMqttClient bool
 	mqttClient    mqtt.Client
 	resultCh      chan error
+	started       bool
 	done          chan bool
 	restart       chan bool
 	Debug         bool
@@ -50,12 +51,20 @@ func (c *Client) MessagingLoop() {
 
 	loopInterval := 30 * time.Second
 
+	c.started = true
+
+	defer func() {
+		c.started = false
+	}()
+
 	for {
 		err = c.messagingLoopInternal()
 
 		if nil != err {
 			log.Warnf("loopInternal: %s. Waiting %d seconds.", err, int(loopInterval.Seconds()))
 			time.Sleep(loopInterval)
+		} else {
+			break
 		}
 	}
 }
@@ -166,18 +175,21 @@ OUTER:
 			case <-c.restart:
 				continue OUTER
 			case <-c.done:
-				break
-				/*
-			case record := <-c.recordCh:
-				{
-					c.publishRecord(record)
-				}*/
+				return nil
 			}
 		}
 	}
 }
 
-func (c *Client) Close() {
+func (c *Client) Start() {
+	if ! c.started {
+		go func() {
+			c.MessagingLoop()
+		}()
+	}
+}
+
+func (c *Client) Stop() {
 	c.done <- true
 }
 
@@ -270,48 +282,3 @@ func (c *Client) ReportState(o *gabs.Container) error {
 
 	return nil
 }
-
-/*
-var publisherMu sync.Mutex
-
-var ENotConnected = errors.New("Not connected")
-
-func (c *Collector) publishRecord(record aircraft.AircraftRecord) error {
-	defer func() {
-		x := recover()
-
-		if err, errorP := x.(error); errorP {
-			log.Errorf("Oops: %v", err)
-
-			c.resultCh <- err
-		} else {
-			c.resultCh <- nil
-		}
-	}()
-
-	publisherMu.Lock()
-
-	defer publisherMu.Unlock()
-
-	if !c.mqttClient.IsConnected() {
-		panic(ENotConnected)
-	}
-
-	buffer, err := c.encodeToRecord(record)
-
-	if nil != err {
-		panic(err)
-	}
-
-	topicToPublish := c.deviceRoot()
-
-	if token := c.mqttClient.Publish(topicToPublish, 1, false, buffer.Bytes()); token.Wait() || nil != token.Error() {
-		if nil != token.Error() {
-			panic(token.Error())
-		}
-	}
-
-	return nil
-}
-
- */

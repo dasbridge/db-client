@@ -70,7 +70,7 @@ func main() {
 	signal.Notify(c, os.Interrupt)
 	go func() {
 		<-c
-		client.Close()
+		client.Stop()
 
 		log.Infof("Disconneting mqtt")
 

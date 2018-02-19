@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"github.com/Jeffail/gabs"
 	"github.com/lucasb-eyer/go-colorful"
+	"syscall"
 )
 
 const DOC = `db-rgb-service.
@@ -79,6 +80,7 @@ func main() {
 	}
 
 	var hue, saturation, brightness float64
+
 	powerState := PowerState(false)
 
 	var updateStatus func()
@@ -138,34 +140,35 @@ func main() {
 		client.ReportState(state)
 	}
 
-
 	if nil != err {
 		panic(err)
 	}
 
-	go func() {
-		client.MessagingLoop()
-	}()
-
 	quit := make(chan struct{})
 	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
+	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+
 	go func() {
 		<-c
-		client.Close()
+
+		log.Infof("Finishing")
+
+		client.Stop()
 
 		log.Infof("Disconnecting mqtt")
 
 		quit <- struct{}{}
 	}()
 
+	client.Start()
 
-	//<-quit
+	go func() {
+		for {
+			updateStatus()
 
-	for {
-		updateStatus()
+			time.Sleep(10 * time.Minute)
+		}
+	}()
 
-		time.Sleep(10 * time.Minute)
-	}
-
+	<-quit
 }

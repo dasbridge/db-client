@@ -81,6 +81,18 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/kardianos/osext",
+			"repository": "https://github.com/kardianos/osext",
+			"revision": "ae77be60afb1dcacde03767a8c37337fad28ac14",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/kardianos/service",
+			"repository": "https://github.com/kardianos/service",
+			"revision": "89346fbadecfd8c0ca98cfd31523f8eba9b4abbf",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/lucasb-eyer/go-colorful",
 			"repository": "https://github.com/lucasb-eyer/go-colorful",
 			"revision": "231272389856c976b7500c4fffcc52ddf06ff4eb",
