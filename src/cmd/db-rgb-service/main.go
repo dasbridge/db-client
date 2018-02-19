@@ -9,7 +9,6 @@ import (
 	"types"
 	"os"
 	"os/signal"
-	"strings"
 	"fmt"
 	"github.com/Jeffail/gabs"
 	"github.com/lucasb-eyer/go-colorful"
@@ -38,7 +37,6 @@ func (p PowerState) String() string {
 	}
 }
 
-
 func main() {
 	opts, _ := docopt.Parse(DOC, nil, true, "0.0.1", true, true)
 
@@ -61,7 +59,20 @@ func main() {
 		panic(err)
 	}
 
-	readBuf := make([]byte, 32)
+	/*
+	readBuf := make([]byte, 256)
+
+	for {
+		_, err := p.Read(readBuf)
+
+		if io.EOF == err {
+			break
+		}
+	}
+
+	readBuf = readBuf[:0]
+
+	log.Infof("readBuf: %q (len: %d, cap: %d)", readBuf, len(readBuf), cap(readBuf))
 
 	_, err = p.Write([]byte("AT\r\n"))
 
@@ -69,7 +80,11 @@ func main() {
 		panic(err)
 	}
 
-	_, err = p.Read(readBuf)
+	log.Infof("readBuf: %q (len: %d, cap: %d)", readBuf, len(readBuf), cap(readBuf))
+
+	n, err := p.Read(readBuf)
+
+	log.Infof("n: %d err: %s", n, err)
 
 	if nil != err {
 		panic(err)
@@ -78,6 +93,7 @@ func main() {
 	if ! strings.Contains(string(readBuf), "OK\r\n") {
 		panic(fmt.Errorf("Unxpected answer: %s", string(readBuf)))
 	}
+	*/
 
 	var hue, saturation, brightness float64
 
@@ -87,14 +103,18 @@ func main() {
 
 	deviceConfig.AddCallbackRule(&types.CallbackDefinition{
 		TopicSuffix: "/shadow/update/accepted",
-		JmesPath: `state.desired."Alexa.PowerController"."3".powerState`,
+		JmesPath:    `state.desired."Alexa.PowerController"."3".powerState`,
 		Callback: func(m map[string]interface{}, val interface{}) error {
 			status := val.(string)
 
 			if "OFF" == status {
 				p.Write([]byte("AT+OFF\r\n"))
+
+				powerState = PowerState(false)
 			} else {
 				p.Write([]byte("AT+RGB=FFFFFF\r\n"))
+
+				powerState = PowerState(true)
 			}
 
 			updateStatus()
@@ -105,7 +125,7 @@ func main() {
 
 	deviceConfig.AddCallbackRule(&types.CallbackDefinition{
 		TopicSuffix: "/shadow/update/accepted",
-		JmesPath: `state.desired."Alexa.ColorController"."3".color`,
+		JmesPath:    `state.desired."Alexa.ColorController"."3".color`,
 		Callback: func(m map[string]interface{}, val interface{}) error {
 			hsb := val.(map[string]interface{})
 

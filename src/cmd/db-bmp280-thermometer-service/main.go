@@ -11,6 +11,7 @@ import (
 	"github.com/Jeffail/gabs"
 	"os"
 	"os/signal"
+	"syscall"
 )
 
 const DOC = `db-bmp280-thermometer-service.
@@ -55,51 +56,54 @@ func main() {
 
 	bmp280.Start()
 
-	//client.Debug = true
-
 	if nil != err {
 		panic(err)
 	}
 
-	go func() {
-		client.MessagingLoop()
-	}()
-
 	quit := make(chan struct{})
 	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
+	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+
 	go func() {
 		<-c
+
+		log.Infof("Finishing")
+
 		client.Stop()
 
-		log.Infof("Disconneting mqtt")
+		log.Infof("Disconnecting mqtt")
 
 		quit <- struct{}{}
 	}()
-	//<-quit
 
-	var oldTemp float32 = float32(0.0)
+	client.Start()
 
-	for {
-		temp, err := bmp280.Temperature()
+	oldTemp := float32(0.0)
 
-		if nil != err {
-			log.Warnf("Oops: %s", err)
+	go func() {
+		for {
+			temp, err := bmp280.Temperature()
 
-			continue
+			if nil != err {
+				log.Warnf("Oops: %s", err)
+
+				continue
+			}
+
+			if 0 != temp && oldTemp != temp {
+				c := gabs.New()
+
+				c.Set(temp, "Alexa.TemperatureSensor", "3", "temp")
+
+				client.ReportState(c)
+			}
+
+			oldTemp = temp
+
+			time.Sleep(1 * time.Minute)
 		}
+	}()
 
-		if 0 != temp && oldTemp != temp {
-			c := gabs.New()
+	<-quit
 
-			c.Set(temp,"Alexa.TemperatureSensor", "3", "temp")
-
-			client.ReportState(c)
-		}
-
-
-		oldTemp = temp
-
-		time.Sleep(1 * time.Minute)
-	}
 }

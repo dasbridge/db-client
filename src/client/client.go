@@ -15,7 +15,6 @@ import (
 	"sync"
 	"errors"
 	"encoding/json"
-	"github.com/shurcooL/go-goon"
 )
 
 type Client struct {
@@ -25,6 +24,7 @@ type Client struct {
 	mqttClient    mqtt.Client
 	resultCh      chan error
 	started       bool
+	connected     bool
 	done          chan bool
 	restart       chan bool
 	Debug         bool
@@ -112,6 +112,8 @@ func (c *Client) onConnect(conn mqtt.Client) {
 	} else {
 		log.Info("Thing shadow updated successfully")
 	}
+
+	c.connected = true
 }
 
 func (c *Client) messagingLoopInternal() error {
@@ -196,6 +198,8 @@ func (c *Client) Stop() {
 func (c *Client) onConnectionLost(client mqtt.Client, err error) {
 	log.Infof("onConnectionLost: %v", err)
 
+	c.connected = false
+
 	if !client.IsConnected() {
 		time.Sleep(60 * time.Second)
 
@@ -245,10 +249,11 @@ func (c *Client) onMessage(client mqtt.Client, message mqtt.Message) {
 		}
 	}
 
-	if !handled {
-		log.Warnf("Oops: Message not dealt (topic: %s): %s", message.Topic(), goon.Sdump(payload))
-	}
+	reformattedPayload, _ := json.Marshal(payload)
 
+	if !handled {
+		log.Debugf("Oops: Message not dealt (topic: %s): %s", message.Topic(), string(reformattedPayload))
+	}
 }
 
 var publisherMu sync.Mutex
@@ -256,6 +261,10 @@ var publisherMu sync.Mutex
 var ENotConnected = errors.New("Not connected")
 
 func (c *Client) ReportState(o *gabs.Container) error {
+	if !c.connected {
+		return ENotConnected
+	}
+
 	defer func() {
 		x := recover()
 
